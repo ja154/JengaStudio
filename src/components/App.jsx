@@ -13,6 +13,7 @@ import {
   setOutputMode,
   setPhotoBatchSize,
   setTextModel,
+  setVideoModel,
   reset
 } from '../lib/actions'
 import {isTouch, isIframe} from '../lib/consts'
@@ -24,6 +25,7 @@ export default function App() {
   const outputMode = useStore.use.outputMode()
   const photoBatchSize = useStore.use.photoBatchSize()
   const textModel = useStore.use.textModel()
+  const videoModel = useStore.use.videoModel()
 
   const [presets, setPresets] = useState([])
   const [showPresets, setShowPresets] = useState(false)
@@ -121,6 +123,24 @@ export default function App() {
                 onChange={e => setTextModel(e.target.value)}
               >
                 {models.text.map(model => (
+                  <option key={model.id} value={model.id}>
+                    {model.version} {model.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="label">Model</div>
+          </div>
+        )}
+
+        {outputMode === 'video' && (
+          <div>
+            <div className="selectWrapper">
+              <select
+                value={videoModel}
+                onChange={e => setVideoModel(e.target.value)}
+              >
+                {models.video.map(model => (
                   <option key={model.id} value={model.id}>
                     {model.version} {model.name}
                   </option>

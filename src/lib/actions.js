@@ -34,7 +34,7 @@ const newOutput = (modelId, mode) => ({
 export const addRound = (prompt, promptImage) => {
   scrollTo({top: 0, left: 0, behavior: 'smooth'})
 
-  const {outputMode, photoBatchSize, textModel} = get()
+  const {outputMode, photoBatchSize, textModel, videoModel} = get()
 
   if (!prompt) {
     return
@@ -45,7 +45,7 @@ export const addRound = (prompt, promptImage) => {
       ? textModel
       : outputMode === 'photo'
       ? models.photo[0].id
-      : models.video[0].id
+      : videoModel
 
   const newRound = {
     prompt,
@@ -133,6 +133,11 @@ export const setPhotoBatchSize = size =>
 export const setTextModel = modelId =>
   set(state => {
     state.textModel = modelId
+  })
+
+export const setVideoModel = modelId =>
+  set(state => {
+    state.videoModel = modelId
   })
 
 export const removeRound = id =>

@@ -14,7 +14,8 @@ export default createSelectorFunctions(
       feed: [],
       outputMode: 'text',
       photoBatchSize: 1,
-      textModel: 'gemini-2.5-flash'
+      textModel: 'gemini-2.5-flash',
+      videoModel: 'veo-2.0'
     }))
   )
 )
